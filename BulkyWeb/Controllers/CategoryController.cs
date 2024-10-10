@@ -1,6 +1,7 @@
 ﻿using BulkyWeb.Data;
 using BulkyWeb.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BulkyWeb.Controllers
 {
@@ -71,13 +72,18 @@ namespace BulkyWeb.Controllers
                 ModelState.AddModelError("name", "The Display Order cannot exactly match the Name.");
             }
 
-            var existingCategory = _db.Categories
-                .FirstOrDefault(c => c.Name == obj.Name);
+            //var existingCategory = _db.Categories
+            //    .AsNoTracking()
+            //    .FirstOrDefault(c => c.Name == obj.Name);
 
-            if (existingCategory != null)
-            {
-                ModelState.AddModelError("name", "This Name already exists.");
-            }
+            //if (existingCategory != null)
+            //{
+            //    if (existingCategory.Id != obj.Id)
+            //    {
+            //        ModelState.AddModelError("name", "This Name already exists.");
+            //    }
+               
+            //}
 
             if (ModelState.IsValid)
             {
